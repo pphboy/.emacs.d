@@ -1,0 +1,13 @@
+#+title: Pi Emacs configuration
+#+author: pphboy@qq.com
+
+** introduction
+
+	*_~i m real fresh fish, if you wanna use the config~_*
+
+	- step.1  install the fonts that in the ./font/* all fonts file
+	- step.2  just enjoy. 🥰
+
+		  
+
+
