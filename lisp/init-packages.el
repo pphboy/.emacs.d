@@ -2,13 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
-;; icon show
-(use-package all-the-icons-dired
-  :init
-;	(add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
-  )
-
 (use-package restart-emacs)
+
 
 (use-package neotree
   :init
@@ -39,7 +34,6 @@
   :config
   (progn
     (setq treemacs-collapse-dirs                   (if treemacs-python-executable 3 0)
-          treemacs-deferred-git-apply-delay        0.5
           treemacs-directory-name-transformer      #'identity
           treemacs-display-in-side-window          t
           treemacs-eldoc-display                   'simple
@@ -50,12 +44,10 @@
           treemacs-follow-after-init               t
           treemacs-expand-after-init               t
           treemacs-find-workspace-method           'find-for-file-or-pick-first
-          treemacs-git-command-pipe                ""
           treemacs-goto-tag-strategy               'refetch-index
           treemacs-indentation                     2
           treemacs-indentation-string              " "
           treemacs-is-never-other-window           nil
-          treemacs-max-git-entries                 5000
           treemacs-missing-project-action          'ask
           treemacs-move-forward-on-expand          nil
           treemacs-no-png-images                   nil
@@ -126,9 +118,6 @@
   :hook (dired-mode . treemacs-icons-dired-enable-once)
   :ensure t)
 
-(use-package treemacs-magit
-  :after (treemacs magit)
-  :ensure t)
 
 ;; 目前没有使用 persp
 ;(use-package treemacs-persp ;;treemacs-perspective if you use perspective.el vs. persp-mode
@@ -179,7 +168,6 @@
 	ivy-count-format "%d%d"
 	enable-recursive-minibuffers t
 	ivy-re-builders-alist '((t . ivy--regex-ignore-order))))
-
 
 (use-package counsel
   :after (ivy)
@@ -252,28 +240,7 @@
   :init
   (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 
-;; 括号补全
-(electric-pair-mode t)
-;; tab
-(electric-indent-mode nil)
-(setq-default default-tab-width 4)
 
-
-;; magit config
-(use-package magit
-	:ensure t
-  :defer 3
-  ;; 关闭绑定
-  ;; :bind ("C-x m" . magit-status)
-  :config
-  (setq magit-diff-refine-hunk (quote all))
-  :hook ((magit-post-commit-hook) . 'git-gutter:update-all-windows))
-
-(use-package git-gutter
-     :ensure t
-     :config
-     (global-git-gutter-mode +1)
-     )
 
 ;;; init-packages.el ends here
 (provide 'init-packages)
