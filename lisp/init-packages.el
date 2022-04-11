@@ -240,6 +240,8 @@
   :init
   (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 
+(use-package smart-compile)
+
 
 
 ;;; init-packages.el ends here
