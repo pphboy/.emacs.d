@@ -1,8 +1,8 @@
 ;; 换源
 (setq package-enable-at-startup nil)
 
-(setq package-archives '(("melpa" . "http://mirrors.163.com/elpa/melpa/")
-                         ("gnu" . "http://mirrors.163.com/elpa/gnu/")))
+(setq package-archives '(("melpa" . "http://mirrors.ustc.edu.cn/elpa/melpa/")
+                         ("gnu" . "http://mirrors.ustc.edu.cn/elpa/gnu/")))
 
 ;; 软件安装配置
 (setq package-check-signature nil) ;; 关闭签名检验

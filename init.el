@@ -1,5 +1,6 @@
 ;; -*- lexical-binding: t -*-
 
+
 (add-to-list 'load-path "~/.emacs.d/lisp/")
 
 (require 'init-startup)
@@ -7,7 +8,6 @@
 (require 'init-elpa)
 (require 'init-packages)
 (require 'init-ui)
-(require 'init-yas)
 (require 'init-php)
 (require 'init-cc)
 (require 'init-org)

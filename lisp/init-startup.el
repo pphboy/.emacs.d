@@ -76,7 +76,7 @@
 ;; 高亮对应的括号
 (show-paren-mode 1)
 ;; 高亮当前行
-(global-hl-line-mode 1)
+;; (global-hl-line-mode 1)
 ;; 括号补全
 (electric-pair-mode t)
 ;; tab

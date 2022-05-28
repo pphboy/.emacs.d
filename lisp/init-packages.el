@@ -7,12 +7,6 @@
 
 (use-package neotree
   :init
-   (add-hook 'neotree-mode-hook
-		(lambda ()
-			(define-key evil-normal-state-local-map (kbd "TAB") 'neotree-enter)
-			(define-key evil-normal-state-local-map (kbd "SPC") 'neotree-enter)
-			(define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
-			(define-key evil-normal-state-local-map (kbd "RET") 'neotree-enter)))
 	;; 当执行 projectile-switch-project (C-c p p) 时，NeoTree 会自动改变根目录。
 	(setq projectile-switch-project-action 'neotree-projectile-action)
 	;; 关闭固定窗口
@@ -24,121 +18,6 @@
 	(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
   :bind (("<f8>" . neotree-toggle)))
 
-;; treemacs start
-(use-package treemacs
-  :ensure t
-  :defer t
-  :init
-  (with-eval-after-load 'winum
-    (define-key winum-keymap (kbd "M-0") #'treemacs-select-window))
-  :config
-  (progn
-    (setq treemacs-collapse-dirs                   (if treemacs-python-executable 3 0)
-          treemacs-directory-name-transformer      #'identity
-          treemacs-display-in-side-window          t
-          treemacs-eldoc-display                   'simple
-          treemacs-file-event-delay                5000
-          treemacs-file-extension-regex            treemacs-last-period-regex-value
-          treemacs-file-follow-delay               0.2
-          treemacs-file-name-transformer           #'identity
-          treemacs-follow-after-init               t
-          treemacs-expand-after-init               t
-          treemacs-find-workspace-method           'find-for-file-or-pick-first
-          treemacs-goto-tag-strategy               'refetch-index
-          treemacs-indentation                     2
-          treemacs-indentation-string              " "
-          treemacs-is-never-other-window           nil
-          treemacs-missing-project-action          'ask
-          treemacs-move-forward-on-expand          nil
-          treemacs-no-png-images                   nil
-          treemacs-no-delete-other-windows         t
-          treemacs-project-follow-cleanup          nil
-          treemacs-persist-file                    (expand-file-name ".cache/treemacs-persist" user-emacs-directory)
-          treemacs-position                        'left
-          treemacs-read-string-input               'from-child-frame
-          treemacs-recenter-distance               0.1
-          treemacs-recenter-after-file-follow      nil
-          treemacs-recenter-after-tag-follow       nil
-          treemacs-recenter-after-project-jump     'always
-          treemacs-recenter-after-project-expand   'on-distance
-          treemacs-litter-directories              '("/node_modules" "/.venv" "/.cask")
-          treemacs-show-cursor                     nil
-          treemacs-show-hidden-files               t
-          treemacs-silent-filewatch                nil
-          treemacs-silent-refresh                  nil
-          treemacs-sorting                         'alphabetic-asc
-          treemacs-select-when-already-in-treemacs 'move-back
-          treemacs-space-between-root-nodes        t
-          treemacs-tag-follow-cleanup              t
-          treemacs-tag-follow-delay                1.5
-          treemacs-text-scale                      nil
-          treemacs-user-mode-line-format           nil
-          treemacs-user-header-line-format         nil
-          treemacs-wide-toggle-width               70
-          treemacs-width                           35
-          treemacs-width-increment                 1
-          treemacs-width-is-initially-locked       t
-          treemacs-workspace-switch-cleanup        nil)
-
-    ;; The default width and height of the icons is 22 pixels. If you are
-    ;; using a Hi-DPI display, uncomment this to double the icon size.
-    ;;(treemacs-resize-icons 44)
-
-    (treemacs-follow-mode t)
-    (treemacs-filewatch-mode t)
-    (treemacs-fringe-indicator-mode 'always)
-
-    (pcase (cons (not (null (executable-find "git")))
-                 (not (null treemacs-python-executable)))
-      (`(t . t)
-       (treemacs-git-mode 'deferred))
-      (`(t . _)
-       (treemacs-git-mode 'simple)))
-
-    (treemacs-hide-gitignored-files-mode nil))
-  :bind
-  (:map global-map
-        ("M-0"       . treemacs-select-window)
-        ("C-x t 1"   . treemacs-delete-other-windows)
-        ("C-x t c f"   . treemacs-create-file)
-        ("C-x t c d"   . treemacs-create-dir)
-        ("C-x t c r"   . treemacs-rename-file)
-        ("C-x t t"   . treemacs)
-        ("C-x t d"   . treemacs-select-directory)
-        ("C-x t B"   . treemacs-bookmark)
-        ("C-x t C-t" . treemacs-find-file)
-        ("C-x t M-t" . treemacs-find-tag)))
-
-
-(use-package treemacs-evil
-  :after (treemacs evil)
-  :ensure t)
-
-(use-package treemacs-icons-dired
-  :hook (dired-mode . treemacs-icons-dired-enable-once)
-  :ensure t)
-
-
-;; 目前没有使用 persp
-;(use-package treemacs-persp ;;treemacs-perspective if you use perspective.el vs. persp-mode
-  ;:after (treemacs persp-mode) ;;or perspective vs. persp-mode
-  ;:ensure t
-  ;:config (treemacs-set-scope-type 'Perspectives))
-
-;; 目前没有使用projectile
-;(use-package treemacs-projectile
-;  :after (treemacs projectile)
-;  :ensure t)
-
-;; treemacs end
-
-
-;; 开启Evil
-(use-package evil
-  :init
-  (evil-mode 1)
-  :config
-  (evil-set-initial-state 'dired-mode 'emacs))
 
 (use-package benchmark-init
   :init (benchmark-init/activate)
@@ -241,8 +120,6 @@
   (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 
 (use-package smart-compile)
-
-
 
 ;;; init-packages.el ends here
 (provide 'init-packages)
