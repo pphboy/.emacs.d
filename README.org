@@ -7,7 +7,7 @@
 
 	- step.1  install the fonts that in the ./font/* all fonts file
 	- step.2  just enjoy. 🥰
-
+    - step.3  Happy Hacking , in the WSL terminal 
 		  
 
 
